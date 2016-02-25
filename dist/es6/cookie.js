@@ -44,7 +44,7 @@ export class Cookie {
         return this.parse(document.cookie);
     }
 
-    parse(str) {
+    static parse(str) {
         var obj = {};
         var pairs = str.split(/ *; */);
         var pair;
@@ -55,13 +55,13 @@ export class Cookie {
 
         for (let i = 0; i < pairs.length; ++i) {
             pair = pairs[i].split('=');
-            obj[decode(pair[0])] = decode(pair[1]);
+            obj[this.decode(pair[0])] = this.decode(pair[1]);
         }
 
         return obj;
     }
 
-    encode(value) {
+    static encode(value) {
         try {
             return encodeURIComponent(value);
         } catch (e) {
@@ -69,7 +69,7 @@ export class Cookie {
         }
     }
 
-    decode(value) {
+    static decode(value) {
         try {
             return decodeURIComponent(value);
         } catch (e) {

@@ -59,7 +59,7 @@ System.register([], function (_export) {
                     return this.parse(document.cookie);
                 };
 
-                Cookie.prototype.parse = function parse(str) {
+                Cookie.parse = function parse(str) {
                     var obj = {};
                     var pairs = str.split(/ *; */);
                     var pair;
@@ -70,13 +70,13 @@ System.register([], function (_export) {
 
                     for (var i = 0; i < pairs.length; ++i) {
                         pair = pairs[i].split('=');
-                        obj[decode(pair[0])] = decode(pair[1]);
+                        obj[this.decode(pair[0])] = this.decode(pair[1]);
                     }
 
                     return obj;
                 };
 
-                Cookie.prototype.encode = function encode(value) {
+                Cookie.encode = function encode(value) {
                     try {
                         return encodeURIComponent(value);
                     } catch (e) {
@@ -84,7 +84,7 @@ System.register([], function (_export) {
                     }
                 };
 
-                Cookie.prototype.decode = function decode(value) {
+                Cookie.decode = function decode(value) {
                     try {
                         return decodeURIComponent(value);
                     } catch (e) {
